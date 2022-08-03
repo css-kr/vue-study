@@ -1,7 +1,11 @@
 <template>
   <div v-if="user">
-    user email : {{ user.email }}
-    <pre>{{ user }}</pre>
+    <div>{{ user.first_name }} {{ user.last_name }}</div>
+    <img :src="user.avatar" alt="dd" />
+    <div>
+      email :
+      <a :href="`mailto:` + user.email">{{ user.email }}</a>
+    </div>
   </div>
 </template>
 

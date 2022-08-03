@@ -4,7 +4,7 @@
       <li v-for="item in userList" :key="item.id">
         <router-link :to="{ name: 'userDetail', params: { id: item.id } }">
           <div>{{ item.first_name }} {{ item.last_name }}</div>
-          <div>{{ item.email }}</div>
+          <!--          <div>{{ item.email }}</div>-->
           <img :src="item.avatar" alt="" />
         </router-link>
       </li>
