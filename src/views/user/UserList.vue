@@ -41,6 +41,8 @@ ul {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  max-width: 900px;
+  margin: 0 auto;
 }
 li {
   list-style: none;
