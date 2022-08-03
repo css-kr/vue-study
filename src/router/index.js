@@ -19,6 +19,11 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
   },
+  {
+    path: "/user/:id?", //? 있을수도 없을수도 있다
+    name: "user",
+    component: () => import("@/views/user/UserIndex.vue"),
+  },
 ];
 
 const router = new VueRouter({
