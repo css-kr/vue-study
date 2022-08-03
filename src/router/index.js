@@ -20,9 +20,21 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
   },
   {
-    path: "/user/:id?", //? 있을수도 없을수도 있다
+    path: "/user", //? 있을수도 없을수도 있다
     name: "user",
     component: () => import("@/views/user/UserIndex.vue"),
+    children: [
+      {
+        path: "list",
+        name: "userList",
+        component: () => import("@/views/user/UserList.vue"),
+      },
+      {
+        path: "detail/:id",
+        name: "userDetail",
+        component: () => import("@/views/user/UserDetail.vue"),
+      },
+    ],
   },
 ];
 
