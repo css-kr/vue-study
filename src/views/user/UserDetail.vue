@@ -1,10 +1,10 @@
 <template>
   <div v-if="user">
     <div>{{ user.first_name }} {{ user.last_name }}</div>
-    <img :src="user.avatar" alt="dd" />
+    <img :src="user.avatar" :alt="user.first_name" />
     <div>
       email :
-      <a :href="`mailto:` + user.email">{{ user.email }}</a>
+      <a :href="`mailto: ${user.email}`">{{ user.email }}</a>
     </div>
   </div>
 </template>
