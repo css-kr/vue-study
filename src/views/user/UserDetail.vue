@@ -21,6 +21,9 @@
         </tr>
       </tbody>
     </table>
+    <button v-on:click="pageBack()" class="btn-back" type="button">
+      pageBack
+    </button>
   </div>
 </template>
 
@@ -44,6 +47,9 @@ export default {
       );
       this.user = data.data;
       console.log(data);
+    },
+    pageBack() {
+      this.$router.go(-1);
     },
   },
 };
@@ -76,5 +82,22 @@ table {
       border-bottom: 1px solid #f0f0f0;
     }
   }
+}
+.btn-back {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  height: 43px;
+  padding: 0 14px;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+  font-weight: 400;
+  color: #000;
+  vertical-align: middle;
+  text-shadow: none;
+  background-color: #fff;
+  margin-top: 20px;
 }
 </style>

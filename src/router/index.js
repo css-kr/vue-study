@@ -25,7 +25,7 @@ const routes = [
     component: () => import("@/views/user/UserIndex.vue"),
     children: [
       {
-        path: "list",
+        path: "list/:page?", //? 없어도 된다
         name: "userList",
         component: () => import("@/views/user/UserList.vue"),
       },
