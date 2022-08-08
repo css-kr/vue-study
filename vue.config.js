@@ -3,5 +3,10 @@ module.exports = defineConfig({
   transpileDependencies: true,
   css: {
     sourceMap: true,
+    loaderOptions: {
+      sass: {
+        additionalData: `@import "@/assets/scss/reset.scss";`,
+      },
+    },
   },
 });
