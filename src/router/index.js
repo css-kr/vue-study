@@ -36,6 +36,11 @@ const routes = [
       },
     ],
   },
+  {
+    path: "/user-animation",
+    name: "userAnimation",
+    component: () => import("@/views/user/UserAnimation.vue"),
+  },
 ];
 
 const router = new VueRouter({
