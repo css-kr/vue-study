@@ -42,6 +42,8 @@ export default {
       per_page: 12,
       slickOptions: {
         slidesToShow: 3,
+        infinite: true,
+        autoplay: true,
       },
     };
   },
