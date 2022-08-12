@@ -1,6 +1,7 @@
 <template>
   <div v-if="user">
     <slick
+      id="slick-user"
       ref="slick"
       :options="slickOptions"
       @afterChange="handleAfterChange"
@@ -14,14 +15,13 @@
       @swipe="handleSwipe"
       @lazyLoaded="handleLazyLoaded"
       @lazyLoadError="handleLazeLoadError"
-      class="slick-wrap"
     >
-      <img src="@/assets/logo.png" alt="picture" />
-      <img src="@/assets/logo.png" alt="picture" />
-      <img src="@/assets/logo.png" alt="picture" />
-      <!--      <ul v-for="item in user" :key="item.id">
-        <li><img :src="item.avatar" alt="picture" /></li>
-      </ul>-->
+      <div v-for="item in user" :key="item.id">
+        <div class="user-cont">
+          <div class="user-pic"><img :src="item.avatar" alt="picture" /></div>
+          <div class="user-name">{{ item.last_name }}</div>
+        </div>
+      </div>
     </slick>
   </div>
 </template>
@@ -29,6 +29,7 @@
 <script>
 import axios from "axios";
 import Slick from "vue-slick";
+import "slick-carousel/slick/slick.css";
 
 export default {
   components: {
@@ -38,6 +39,7 @@ export default {
     return {
       user: null,
       id: null,
+      per_page: 12,
       slickOptions: {
         slidesToShow: 3,
       },
@@ -48,17 +50,21 @@ export default {
   },
   methods: {
     async getUserList() {
-      const { data } = await axios.get("https://reqres.in/api/users");
+      const { data } = await axios.get("https://reqres.in/api/users", {
+        params: {
+          page: this.page,
+          per_page: this.per_page,
+        },
+      });
       this.user = data.data;
+      console.log(data);
     },
-    /*next() {
+    next() {
       this.$refs.slick.next();
     },
-
     prev() {
       this.$refs.slick.prev();
     },
-
     reInit() {
       // Helpful if you have to deal with v-for to update dynamic lists
       this.$nextTick(() => {
@@ -99,16 +105,36 @@ export default {
     },
     handleLazeLoadError(event, slick, image, imageSource) {
       console.log("handleLazeLoadError", event, slick, image, imageSource);
-    },*/
+    },
   },
 };
 </script>
 
-<style lang="scss" scoped>
-.slick-wrap {
-  height: 500px;
-  .slide-pic {
-    border: 1px solid red;
+<style lang="scss">
+/* scoped를 삭제해야 slick css가 적용된다 */
+#slick-user {
+  button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    height: 43px;
+    padding: 0 14px;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #000;
+    vertical-align: middle;
+    text-shadow: none;
+    background-color: #fff;
+    margin-top: 20px;
+  }
+  .user-pic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
   }
 }
 </style>
