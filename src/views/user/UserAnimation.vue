@@ -23,6 +23,20 @@
         </div>
       </div>
     </slick>
+    <div class="today">
+      <p>What day is it today?</p>
+      <animated-number
+        :value="value"
+        :duration="duration"
+        :formatValue="formatToPrice"
+        :round="round"
+      >
+      </animated-number>
+      <div class="interv-time">
+        <span>{{ nowHour }}</span> | <span>{{ nowMinute }}</span> |
+        <span>{{ nowSecond }}</span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -30,10 +44,12 @@
 import axios from "axios";
 import Slick from "vue-slick";
 import "slick-carousel/slick/slick.css";
+import AnimatedNumber from "animated-number-vue";
 
 export default {
   components: {
     Slick,
+    AnimatedNumber,
   },
   data() {
     return {
@@ -45,10 +61,18 @@ export default {
         infinite: true,
         autoplay: true,
       },
+      nowHour: "",
+      nowMinute: "",
+      nowSecond: "",
+      value: 2022,
+      duration: 2000,
+      round: 1,
     };
   },
   mounted() {
     this.getUserList();
+    this.setNowTime();
+    setInterval(this.setNowTime, 3000);
   },
   methods: {
     async getUserList() {
@@ -107,6 +131,28 @@ export default {
     },
     handleLazeLoadError(event, slick, image, imageSource) {
       console.log("handleLazeLoadError", event, slick, image, imageSource);
+    },
+    setNowTime() {
+      let myDate = new Date();
+      let hou = String(
+        myDate.getHours() < 10 ? "0" + myDate.getHours() : myDate.getHours()
+      );
+      let min = String(
+        myDate.getMinutes() < 10
+          ? "0" + myDate.getMinutes()
+          : myDate.getMinutes()
+      );
+      let sec = String(
+        myDate.getSeconds() < 10
+          ? "0" + myDate.getSeconds()
+          : myDate.getSeconds()
+      );
+      this.nowHour = hou;
+      this.nowMinute = min;
+      this.nowSecond = sec;
+    },
+    formatToPrice(value) {
+      return `${value.toFixed(2)}`;
     },
   },
 };
