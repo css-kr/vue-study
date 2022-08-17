@@ -38,12 +38,13 @@ export default {
         {
           params: {
             post: this.id,
-            per_page: this.comment_per_page,
+            per_page: this.comment_per_page, //문의
           },
         }
       );
       this.comments = data;
-      console.log("comment", data);
+      // this.comment_per_page = 100;
+      //console.log("comment", data);
     },
   },
 };

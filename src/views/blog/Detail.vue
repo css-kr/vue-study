@@ -8,6 +8,7 @@
       <div v-html="post.content.rendered"></div>
       <hr />
       <comment-list :id="id"></comment-list>
+      <list_tag :id="id"></list_tag>
     </div>
     <div v-else>loading..</div>
   </div>
@@ -16,11 +17,13 @@
 <script>
 import axios from "axios";
 import comment from "@/components/comments/Index";
+import list_tag from "@/components/comments/Tag";
 
 export default {
   name: "blogDetail",
   components: {
     commentList: comment,
+    list_tag: list_tag,
   },
   data() {
     return {
@@ -29,7 +32,6 @@ export default {
     };
   },
   mounted() {
-    console.log(this.id);
     this.id = Number(this.$route.params.id);
     console.log(this.id);
     this.getPost();
