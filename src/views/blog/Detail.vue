@@ -1,0 +1,48 @@
+<template>
+  <div>
+    <div v-if="post">
+      <h2>{{ post.title.rendered }}</h2>
+      <div>{{ moment(post.date).format("yyyy-mm-DD") }}</div>
+      <div v-html="post.content.rendered"></div>
+      <hr />
+      <comment-list :id="id"></comment-list>
+    </div>
+    <div v-else>loading</div>
+  </div>
+</template>
+<script>
+import axios from "axios";
+import comment from "@/components/comments/Index";
+
+export default {
+  name: "blogDetail",
+
+  data() {
+    return {
+      post: null,
+      id: 0,
+    };
+  },
+
+  components: {
+    commentList: comment,
+  },
+
+  mounted() {
+    this.id = Number(this.$route.params.id);
+
+    // console.log(this.id);
+    this.getPost();
+  },
+  methods: {
+    async getPost() {
+      const { data } = await axios.get(
+        `https://theme.sunflower.kr/wp-json/wp/v2/posts/${this.id}`
+      );
+      this.post = data;
+
+      // console.log(data);
+    },
+  },
+};
+</script>
