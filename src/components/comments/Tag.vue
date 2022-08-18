@@ -4,6 +4,7 @@
     <hr />
   </div>
 </template>
+ㄹ
 <script>
 import axios from "axios";
 
@@ -18,8 +19,8 @@ export default {
 
   props: {
     id: {
-      type: Number,
-      default: 0,
+      // type: Number,
+      // default: 0,
     },
   },
 
