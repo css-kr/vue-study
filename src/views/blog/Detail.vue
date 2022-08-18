@@ -6,6 +6,7 @@
       <div v-html="post.content.rendered"></div>
       <hr />
       <comment-list :id="id"></comment-list>
+      <comment-tag :id="id">ss</comment-tag>
     </div>
     <div v-else>loading</div>
   </div>
@@ -13,6 +14,7 @@
 <script>
 import axios from "axios";
 import comment from "@/components/comments/Index";
+import commentTag from "@/components/comments/Tag";
 
 export default {
   name: "blogDetail",
@@ -26,6 +28,7 @@ export default {
 
   components: {
     commentList: comment,
+    commentTag: commentTag, //tag
   },
 
   mounted() {
