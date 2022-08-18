@@ -9,6 +9,7 @@
       </h2>
       <!-- // TODO : XSS -->
       <div v-html="item.content.rendered"></div>
+      <div>tags: {{ item.tags }}</div>
       <hr />
     </div>
     <!--    <pre>{{ posts }}</pre>-->
