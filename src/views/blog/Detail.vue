@@ -6,6 +6,7 @@
         <div>{{ moment(post.date).format("yyyy-mm-dd") }}</div>
       </header>
       <div v-html="post.content.rendered"></div>
+      <tags :id="id"></tags>
       <hr />
       <comment-list :id="id"></comment-list>
     </div>
@@ -16,11 +17,13 @@
 <script>
 import axios from "axios";
 import comment from "@/components/comments/Index";
+import tags from "@/components/tags/Index";
 
 export default {
   name: "blogDetail",
   components: {
     commentList: comment,
+    tags: tags,
   },
   data() {
     return {

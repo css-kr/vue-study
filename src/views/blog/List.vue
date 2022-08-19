@@ -1,6 +1,5 @@
 <template>
   <div style="text-align: left">
-    blog
     <div v-for="item in posts" :key="item.id">
       <h2>
         <router-link :to="{ name: 'blogDetail', params: { id: item.id } }">{{
@@ -29,6 +28,12 @@ export default {
   mounted() {
     this.getPost();
   },
+  watch: {
+    "$route.query"(value) {
+      console.log("$route.query", value);
+      this.getPost();
+    },
+  },
   methods: {
     async getPost() {
       const { data } = await axios(
@@ -36,6 +41,7 @@ export default {
         {
           params: {
             per_page: 7,
+            tags: this.$route.query.tag,
           },
         }
       );
