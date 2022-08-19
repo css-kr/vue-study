@@ -1,7 +1,9 @@
 <template>
   <div v-if="commentTag">
-    <div v-for="item in commentTag" :key="item.id">{{ item.name }}</div>
-    <hr />
+    <div v-for="item in commentTag" :key="item.id">
+      {{ item.name }}
+      <hr />
+    </div>
   </div>
 </template>
 
