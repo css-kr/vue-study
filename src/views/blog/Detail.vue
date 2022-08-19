@@ -3,8 +3,13 @@
     <div v-if="post">
       <h2>{{ post.title.rendered }}</h2>
       <div>{{ moment(post.date).format("yyyy-mm-DD") }}</div>
+
       <div v-html="post.content.rendered"></div>
+
+      <tags></tags>
+
       <hr />
+
       <comment-list :id="id"></comment-list>
     </div>
     <div v-else>loading</div>
@@ -13,6 +18,7 @@
 <script>
 import axios from "axios";
 import comment from "@/components/comments/Index";
+import tags from "@/components/tags/Index";
 
 export default {
   name: "blogDetail",
@@ -26,6 +32,7 @@ export default {
 
   components: {
     commentList: comment,
+    tags: tags,
   },
 
   mounted() {

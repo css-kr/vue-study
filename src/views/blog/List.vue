@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <div v-for="item in posts" :key="item.id">
-      <h2>
+  <div class="list">
+    <div v-for="item in posts" :key="item.id" class="list-item">
+      <h3 class="h3">
         <router-link
           :to="{
             name: 'blogDetail',
@@ -11,7 +11,7 @@
           }"
           >{{ item.title.rendered }}</router-link
         >
-      </h2>
+      </h3>
 
       <!-- TODO : XSS -->
       <div v-html="item.content.rendered"></div>
@@ -32,6 +32,13 @@ export default {
   mounted() {
     this.getPost();
   },
+
+  watch: {
+    "$route.query"(value) {
+      console.log("$route.query", value);
+      this.getPost();
+    },
+  },
   methods: {
     async getPost() {
       const { data } = await axios(
@@ -39,6 +46,7 @@ export default {
         {
           params: {
             per_page: 7,
+            tags: this.$route.query.tag,
           },
         }
       );

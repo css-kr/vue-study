@@ -1,0 +1,41 @@
+#app {
+  padding:0 2rem;
+  text-align:left;
+  font-size:18px;
+}
+
+.blog{
+  .h2{
+    font-size:30px;
+    padding-bottom:20px;
+    text-transform: capitalize;
+    font-weight:bold;
+  }
+}
+
+.list {
+  border-top:1px solid #222;
+
+  &-item {
+    padding:20px 0;
+    border-bottom:1px solid #ddd
+  }
+
+  .h3 {
+    color:#555;
+    font-size:20px;
+
+    & + div {
+      padding-left:10px;
+    }
+
+    a {
+      display:inline-block;
+      padding-bottom:10px;
+
+      &:hover {
+        text-decoration:underline;
+      }
+    }
+  }
+}

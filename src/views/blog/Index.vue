@@ -1,6 +1,6 @@
 <template>
-  <div style="text-align: left">
-    blog
+  <div class="blog">
+    <h2 class="h2">blog</h2>
     <router-view></router-view>
   </div>
 </template>
