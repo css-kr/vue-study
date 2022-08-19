@@ -9,7 +9,11 @@
       </header>
       <div v-html="post.content.rendered"></div>
 
+      <tags :id="id"></tags>
+
       <hr />
+
+      <comment-list :id="id"></comment-list>
     </div>
     <div v-else>loading</div>
   </div>
@@ -17,17 +21,24 @@
 
 <script>
 import axios from "axios";
+import comment from "@/components/comments/Index";
+import tags from "@/components/tags/Index";
 
 export default {
   name: "blogDetail",
+  components: {
+    commentList: comment,
+    tags: tags,
+  },
+
   data() {
     return {
       post: null,
-      id: 72,
+      id: 0,
     };
   },
   mounted() {
-    this.id = this.$route.params.id;
+    this.id = Number(this.$route.params.id);
     console.log(this.id);
     this.getPost();
   },
@@ -41,7 +52,7 @@ export default {
 
       // console.log(this);
 
-      console.log(data);
+      // console.log(data);
     },
   },
 };

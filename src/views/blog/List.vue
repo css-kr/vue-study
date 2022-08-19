@@ -37,6 +37,12 @@ export default {
   mounted() {
     this.getPost();
   },
+  watch: {
+    "$route.query"(value) {
+      console.log("$route.query", value);
+      this.getPost();
+    },
+  },
   methods: {
     async getPost() {
       const { data } = await axios(
@@ -44,6 +50,7 @@ export default {
         {
           params: {
             per_page: 7,
+            tags: this.$route.query.tag,
           },
         }
       );
