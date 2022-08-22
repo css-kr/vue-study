@@ -1,12 +1,7 @@
 <template>
-  <div>
-    <div
-      v-for="item in comments"
-      :key="item.id"
-      style="border: 1px solid red; margin: 10px; padding: 10px"
-    >
+  <div class="comment">
+    <div v-for="item in comments" :key="item.id" class="comment-item">
       <div v-html="item.content.rendered"></div>
-      000
     </div>
   </div>
 </template>

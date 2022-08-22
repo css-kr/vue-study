@@ -1,14 +1,14 @@
 <template>
-  <div>
+  <div class="view">
     <div v-if="post">
-      <h2>{{ post.title.rendered }}</h2>
-      <div>{{ moment(post.date).format("yyyy-mm-DD") }}</div>
+      <h3 class="h3">
+        {{ post.title.rendered }}
+      </h3>
+      <div class="date">{{ moment(post.date).format("yyyy-mm-DD") }}</div>
 
-      <div v-html="post.content.rendered"></div>
+      <div v-html="post.content.rendered" class="content"></div>
 
       <tags></tags>
-
-      <hr />
 
       <comment-list :id="id"></comment-list>
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="tag">
     <router-link
       :to="{
         name: 'blogList',

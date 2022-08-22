@@ -14,7 +14,7 @@
       </h3>
 
       <!-- TODO : XSS -->
-      <div v-html="item.content.rendered"></div>
+      <div v-html="item.content.rendered" class="content"></div>
     </div>
     <!--    <pre>{{ posts }}</pre>-->
   </div>

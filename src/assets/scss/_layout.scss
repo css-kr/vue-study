@@ -5,37 +5,84 @@
 }
 
 .blog{
+
   .h2{
     font-size:30px;
     padding-bottom:20px;
     text-transform: capitalize;
     font-weight:bold;
-  }
-}
-
-.list {
-  border-top:1px solid #222;
-
-  &-item {
-    padding:20px 0;
-    border-bottom:1px solid #ddd
+    border-bottom:1px solid #222;
   }
 
   .h3 {
     color:#555;
     font-size:20px;
-
-    & + div {
-      padding-left:10px;
-    }
+    padding-bottom:10px;
 
     a {
       display:inline-block;
-      padding-bottom:10px;
 
       &:hover {
         text-decoration:underline;
       }
     }
   }
+
+  .date {
+    display:inline-block;
+    font-size:16px;
+    color:#888;
+    margin-bottom:10px;
+  }
+
+  .content {
+    padding-left:10px;
+    line-height: 1.5;
+  }
+
+  .list {
+
+      &-item {
+        padding:20px 0 15px;
+        border-bottom:1px solid #ddd;
+      }
+  }
+
+  .view {
+    padding:20px 0;
+
+    .content{
+      padding:30px 0 30px 10px;
+      border:1px solid #999;
+      border-width:1px 0 1px 0 ;
+    }
+  }
+
+  .tag{
+    padding-top:15px;
+
+    & > a {
+      font-style:italic;
+    }
+
+    a + a {
+      padding-left:10px;
+    }
+  }
+
+  .comment{
+    margin-top:50px;
+
+    &-item {
+      padding:10px;
+      border-top:1px solid #ddd;
+
+      p {
+        &:before {
+          content:'- ';
+        }
+      }
+    }
+  }
 }
+
