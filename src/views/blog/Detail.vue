@@ -1,14 +1,15 @@
 <template>
   <div>
-    <div v-if="post" style="text-align: left">
+    <div v-if="post" style="text-align: left" class="detail-wrap">
       <header>
-        <h2>{{ post.title.rendered }}</h2>
-        <div>{{ moment(post.date).format("yyyy-mm-dd") }}</div>
+        <h2 class="detail-tit">{{ post.title.rendered }}</h2>
+        <div class="detail-date">
+          {{ moment(post.date).format("yyyy-mm-dd") }}
+        </div>
       </header>
-      <div v-html="post.content.rendered"></div>
-      <tags :id="id"></tags>
-      <hr />
-      <comment-list :id="id"></comment-list>
+      <div v-html="post.content.rendered" class="detail-cont"></div>
+      <tags :id="id" class="detail-tag"></tags>
+      <comment-list :id="id" class="detail-comt"></comment-list>
     </div>
     <div v-else>loading..</div>
   </div>

@@ -1,10 +1,8 @@
 <template>
-  <div>
-    <div
-      v-for="item in comments"
-      :key="item.id"
-      style="border: 1px solid green"
-    >
+  <div class="comt-wrap">
+    <h2 class="comt-tit">Comments</h2>
+    <!--v-if문의-->
+    <div v-for="item in comments" :key="item.id" class="comt-txt">
       <div v-html="item.content.rendered"></div>
     </div>
   </div>
