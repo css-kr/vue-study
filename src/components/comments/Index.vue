@@ -1,20 +1,19 @@
 <template>
   <div>
-    <div
-      v-for="item in comments"
-      :key="item.id"
-      style="border: 1px solid red; margin: 10px; padding: 10px"
-    >
-      <div v-html="item.content.rendered"></div>
-    </div>
+    <comment-item :id="id" :comments="comments"></comment-item>
   </div>
 </template>
 
 <script>
+import commentItem from "./comment";
 import axios from "axios";
 
 export default {
   name: "commentList",
+  components: {
+    commentItem: commentItem,
+  },
+
   data() {
     return {
       // id: 0,
@@ -39,6 +38,7 @@ export default {
         "https://theme.sunflower.kr/wp-json/wp/v2/comments",
         {
           params: {
+            order: "asc",
             post: this.id,
             per_page: this.comment_per_page,
           },
