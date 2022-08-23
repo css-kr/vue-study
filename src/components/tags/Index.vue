@@ -46,7 +46,7 @@ export default {
       );
 
       this.tags = data;
-      console.log(data);
+      // console.log(data);
     },
   },
 };

@@ -32,7 +32,7 @@
     display:inline-block;
     font-size:16px;
     color:#888;
-    margin-bottom:10px;
+    margin-bottom:15px;
   }
 
   .content {
@@ -75,7 +75,8 @@
 
     &-item {
       padding:10px;
-      border-top:1px solid #ddd;
+      border:1px solid #ddd;
+      margin:10px 0;
 
       p {
         &:before {

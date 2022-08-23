@@ -1,15 +1,17 @@
 <template>
-  <div class="comment">
-    <div v-for="item in comments" :key="item.id" class="comment-item">
-      <div v-html="item.content.rendered"></div>
-    </div>
-  </div>
+  <comment-item :id="id" :comments="comments"></comment-item>
 </template>
+
 <script>
+import commentItem from "./comment";
 import axios from "axios";
 
 export default {
   name: "commentList",
+  components: {
+    commentItem: commentItem,
+  },
+
   data() {
     return {
       comments: null,
@@ -34,12 +36,14 @@ export default {
         "https://theme.sunflower.kr/wp-json/wp/v2/comments",
         {
           params: {
+            order: "asc",
             post: this.id,
             per_page: 100,
           },
         }
       );
       this.comments = data;
+
       console.log("comment", data);
     },
   },

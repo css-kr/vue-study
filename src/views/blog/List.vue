@@ -52,7 +52,7 @@ export default {
       );
       //통신 후 대입
       this.posts = data;
-      console.log(data);
+      // console.log(data);
     },
   },
 };
