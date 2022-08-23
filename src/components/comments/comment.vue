@@ -20,12 +20,12 @@
 </template>
 
 <script>
-//import commentItem from "./comment";
+import commentItem from "./comment";
 
 export default {
   name: "commentItem",
   components: {
-    //commentItem,
+    commentItem,
   },
   props: {
     id: {
