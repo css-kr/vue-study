@@ -16,6 +16,10 @@
       <!-- // TODO : XSS -->
       <div v-html="item.content.rendered"></div>
 
+      <div>
+        {{ setTag(item.tags) }}
+      </div>
+
       <hr />
     </div>
 
@@ -32,10 +36,14 @@ export default {
     return {
       // 선언
       posts: null,
+      tags: [],
     };
   },
   mounted() {
     this.getPost();
+
+    const a = this.$store.state.tags.items;
+    console.log("@@@@@-----", a);
   },
   watch: {
     "$route.query"(value) {
@@ -57,8 +65,17 @@ export default {
 
       // 통신 후 대입
       this.posts = data;
+    },
+    setTag(tags) {
+      const storeTags = this.$store.state.tags.items;
+      const tag = [];
+      tags.forEach((v) => {
+        console.log(v, storeTags);
+        console.log("000000", storeTags.find((t) => t.id === v)?.name);
+        tag.push(storeTags.find((t) => t.id === v)?.name);
+      });
 
-      console.log(data);
+      return tag;
     },
   },
 };
