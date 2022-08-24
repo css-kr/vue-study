@@ -7,6 +7,7 @@
       </header>
       <div v-html="post.content.rendered"></div>
       <tags :id="id"></tags>
+      <tag-list :items="post.tags"></tag-list>
       <hr />
       <comment-list :id="id"></comment-list>
     </div>
@@ -18,12 +19,14 @@
 import axios from "axios";
 import comment from "@/components/comments/Index";
 import tags from "@/components/tags/Index";
+import tagList from "@/components/tags/tag";
 
 export default {
   name: "blogDetail",
   components: {
     commentList: comment,
     tags: tags,
+    tagList: tagList,
   },
   data() {
     return {

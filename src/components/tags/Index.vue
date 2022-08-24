@@ -16,6 +16,7 @@
 
 <script>
 import axios from "axios";
+import { mapActions } from "vuex";
 
 export default {
   name: "postTag",
@@ -32,8 +33,12 @@ export default {
   },
   mounted() {
     this.getTags();
+
+    //this.$store.dispatch("tags/getTags");
+    this.getTags();
   },
   methods: {
+    ...mapActions({ testTags: "tags/getTags" }),
     async getTags() {
       const { data } = await axios.get(
         "https://theme.sunflower.kr/wp-json/wp/v2/tags",

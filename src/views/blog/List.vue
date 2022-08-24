@@ -8,6 +8,7 @@
       </h2>
       <!-- // TODO : XSS -->
       <div v-html="item.content.rendered"></div>
+      <tag-list :items="item.tags"></tag-list>
       <hr />
     </div>
     <!--    <pre>{{ posts }}</pre>-->
@@ -16,13 +17,18 @@
 
 <script>
 import axios from "axios";
+import tagList from "@/components/tags/tag";
 
 export default {
   name: "blogList",
+  components: {
+    tagList: tagList,
+  },
   data() {
     return {
       //선언
       posts: null,
+      tags: [],
     };
   },
   mounted() {
