@@ -43,7 +43,7 @@ export default {
   methods: {
     async getPost() {
       const { data } = await axios(
-        "https://theme.sunflower.kr/wp-json/wp/v2/posts",
+        `${process.env.VUE_APP_URL}/wp-json/wp/v2/posts`,
         {
           params: {
             per_page: 7,

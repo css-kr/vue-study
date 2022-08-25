@@ -11,7 +11,7 @@ const getters = {
 const actions = {
   async getTags({ commit }) {
     const { data } = await axios.get(
-      "https://theme.sunflower.kr/wp-json/wp/v2/tags"
+      `${process.env.VUE_APP_URL}/wp-json/wp/v2/tags`
     );
     console.log("-----", data);
     commit("UPDATE_TAGS", data);
