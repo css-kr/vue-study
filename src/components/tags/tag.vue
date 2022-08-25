@@ -1,5 +1,20 @@
 <template>
-  <div>tag : {{ tags }}</div>
+  <div v-if="tags.length > 0">
+    tag :
+    <span v-for="(item, index) in tags" :key="item.id">
+      <span v-if="index !== 0">/</span>
+      <router-link
+        :to="{
+          name: 'blogList',
+          query: {
+            tag: item.id,
+          },
+        }"
+      >
+        {{ item.name }}
+      </router-link>
+    </span>
+  </div>
 </template>
 
 <script>
@@ -24,10 +39,12 @@ export default {
       const items = [];
 
       this.items.forEach((tag) => {
-        items.push(this.getTag.find((v) => v.id === tag).name);
+        items.push(this.getTag.find((v) => v.id === tag));
       });
 
-      return items.join(",");
+      console.log("----", items);
+
+      return items; //.join(",");
     },
   },
   mounted() {

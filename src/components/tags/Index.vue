@@ -42,7 +42,7 @@ export default {
     ...mapActions({ testTags: "tags/getTags" }),
     async getTags() {
       const { data } = await axios.get(
-        "https://theme.sunflower.kr/wp-json/wp/v2/tags",
+        `${process.env.VUE_APP_URL}/wp-json/wp/v2/tags`,
         {
           params: {
             post: this.id,

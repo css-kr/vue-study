@@ -16,9 +16,9 @@
       <!-- // TODO : XSS -->
       <div v-html="item.content.rendered"></div>
 
-      <div>
-        {{ setTag(item.tags) }}
-      </div>
+      <!--      <div>-->
+      <!--        {{ setTag(item.tags) }}-->
+      <!--      </div>-->
 
       <tag-list :items="item.tags"></tag-list>
 
@@ -60,7 +60,7 @@ export default {
   methods: {
     async getPost() {
       const { data } = await axios(
-        "https://theme.sunflower.kr/wp-json/wp/v2/posts",
+        `${process.env.VUE_APP_URL}/wp-json/wp/v2/posts`,
         {
           params: {
             per_page: 7,
