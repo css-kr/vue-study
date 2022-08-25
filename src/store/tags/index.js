@@ -3,13 +3,21 @@ import axios from "axios";
 const state = {
   items: [],
 };
-const getters = {};
+const getters = {
+  getTags(state) {
+    return state.items;
+  },
+};
 const actions = {
-  async getTags({ commit }) {
+  async getTags({ commit, state }) {
+    if (state.items > 0) {
+      return;
+    }
+
     const { data } = await axios.get(
       "https://theme.sunflower.kr/wp-json/wp/v2/tags"
     );
-    console.log("===", data);
+    console.log("===", state.items);
     commit("UPDATE_TAGS", data);
   },
 };

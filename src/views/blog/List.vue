@@ -20,6 +20,8 @@
         {{ setTag(item.tags) }}
       </div>
 
+      <tag-list :items="item.tags"></tag-list>
+
       <hr />
     </div>
 
@@ -29,9 +31,13 @@
 
 <script>
 import axios from "axios";
+import tagList from "@/components/tags/tag";
 
 export default {
   name: "blogList",
+  components: {
+    tagList: tagList,
+  },
   data() {
     return {
       // 선언
