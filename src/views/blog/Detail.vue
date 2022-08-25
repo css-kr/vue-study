@@ -9,6 +9,7 @@
       <div v-html="post.content.rendered" class="content"></div>
 
       <tags></tags>
+      <tag-list :items="post.tags"></tag-list>
 
       <comment-list :id="id"></comment-list>
     </div>
@@ -19,6 +20,7 @@
 import axios from "axios";
 import comment from "@/components/comments/Index";
 import tags from "@/components/tags/Index";
+import tagList from "@/components/tags/tag";
 
 export default {
   name: "blogDetail",
@@ -33,6 +35,7 @@ export default {
   components: {
     commentList: comment,
     tags: tags,
+    tagList: tagList,
   },
 
   mounted() {

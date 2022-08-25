@@ -33,6 +33,7 @@ export default {
   },
   mounted() {
     this.getTags();
+    this.$store.dispatch("tags/getTags");
   },
   methods: {
     async getTags() {

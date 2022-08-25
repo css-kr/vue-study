@@ -15,14 +15,21 @@
 
       <!-- TODO : XSS -->
       <div v-html="item.content.rendered" class="content"></div>
+
+      <tag-list :items="item.tags"></tag-list>
     </div>
     <!--    <pre>{{ posts }}</pre>-->
   </div>
 </template>
 <script>
 import axios from "axios";
+import tagList from "@/components/tags/tag";
+
 export default {
   name: "blogList",
+  components: {
+    tagList: tagList,
+  },
   data() {
     return {
       //선언
