@@ -1,9 +1,24 @@
 <template>
-  <div>tag : {{ tags }}</div>
+  <div v-if="tags.length > 0">
+    tag :
+    <span v-for="(item, index) in tags" :key="item.id">
+      <span v-if="index !== 0"> /</span>
+      <router-link
+        :to="{
+          name: 'blogList',
+          query: {
+            tag: item.id,
+          },
+        }"
+        >{{ item.name }}
+      </router-link>
+    </span>
+  </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+
 export default {
   name: "tagList",
   props: {
@@ -25,10 +40,10 @@ export default {
       this.items.forEach((tag) => {
         console.log(tag);
         console.log("1111", this.getTag.find((v) => v.id === tag).name);
-        items.push(this.getTag.find((v) => v.id === tag).name);
+        items.push(this.getTag.find((v) => v.id === tag));
       });
 
-      return items.join(", ");
+      return items; //.join(", ");
     },
   },
   mounted() {
