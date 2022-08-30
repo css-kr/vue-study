@@ -1,5 +1,20 @@
 <template>
-  <comment-item :id="id" :comments="comments"></comment-item>
+  <div>
+    <comment-item
+      :id="id"
+      :comments="comments"
+      @clickReply="reply"
+    ></comment-item>
+
+    <form method="POST" @submit.prevent="commentSubmit">
+      <p>
+        이름 <input type="text" name="name" v-model="commentForm.author_name" />
+      </p>
+      <p>이메일 <input type="email" v-model="commentForm.author_email" /></p>
+      <p>내용 <textarea v-model="commentForm.content"></textarea></p>
+      <p><button type="submit">submit</button></p>
+    </form>
+  </div>
 </template>
 
 <script>
@@ -16,6 +31,13 @@ export default {
     return {
       comments: null,
       // id: 0,
+      commentForm: {
+        parent: 0,
+        post: 0,
+        author_name: "",
+        author_email: "",
+        content: "",
+      },
     };
   },
 
@@ -45,6 +67,30 @@ export default {
       this.comments = data;
 
       console.log("comment", data);
+    },
+
+    async commentSubmit() {
+      console.log("-------------");
+      const { data } = await axios.post(
+        `${process.env.VUE_APP_URL}/wp-json/wp/v2/comments`,
+        {
+          parent: this.commentForm.parent,
+          post: this.id,
+          author_name: this.commentForm.author_name,
+          author_email: this.commentForm.author_email,
+          content: this.commentForm.content,
+        }
+      );
+
+      this.commentForm.parent = 0; // 댓글 위치 리셋시켜줌
+
+      this.getComment();
+      console.log("commentsubmit", data);
+    },
+
+    reply({ commentId }) {
+      this.commentForm.parent = commentId;
+      console.log("====================!!!", commentId);
     },
   },
 };

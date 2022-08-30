@@ -6,8 +6,14 @@
       })"
       :key="item.id"
       class="comment-item"
+      style="border: 1px solid red"
     >
+      <div>
+        <button type="button" @click="reply(item.id)">{{ item.id }}</button>
+      </div>
+
       <div>{{ item.author_name }}</div>
+
       <div v-html="item.content.rendered"></div>
 
       <comment-item
@@ -43,6 +49,15 @@ export default {
     comments: {
       type: Array,
       default: () => [],
+    },
+  },
+
+  methods: {
+    reply(id) {
+      console.log("==========click", id);
+      this.$emit("clickReply", {
+        commentId: id,
+      });
     },
   },
 };
