@@ -33,7 +33,7 @@ export default {
   methods: {
     async getComment() {
       const { data } = await axios(
-        "https://theme.sunflower.kr/wp-json/wp/v2/comments",
+        `${process.env.VUE_APP_URL}/wp-json/wp/v2/comments`,
         {
           params: {
             order: "asc",

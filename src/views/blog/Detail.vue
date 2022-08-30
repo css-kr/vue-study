@@ -47,7 +47,7 @@ export default {
   methods: {
     async getPost() {
       const { data } = await axios.get(
-        `https://theme.sunflower.kr/wp-json/wp/v2/posts/${this.id}`
+        `${process.env.VUE_APP_URL}/wp-json/wp/v2/posts/${this.id}`
       );
       this.post = data;
 

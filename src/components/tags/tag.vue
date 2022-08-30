@@ -38,8 +38,8 @@ export default {
       const items = [];
 
       this.items.forEach((tag) => {
-        console.log(tag);
-        console.log("1111", this.getTag.find((v) => v.id === tag).name);
+        // console.log(tag);
+        // console.log("1111", this.getTag.find((v) => v.id === tag).name);
         items.push(this.getTag.find((v) => v.id === tag));
       });
 
@@ -47,7 +47,7 @@ export default {
     },
   },
   mounted() {
-    console.log("wowwow", this.getTag);
+    // console.log("wowwow", this.getTag);
   },
   methods: {},
 };
