@@ -2,7 +2,7 @@
   <div>
     <!--    <pre>{{ page }}</pre>-->
 
-    <router-link :to="prev" v-if="page.page !== 1">prev</router-link>
+    <router-link :to="prev" v-if="page.page > 1">prev</router-link>
 
     <router-link
       :to="{ name: 'blogList', query: { page: item } }"
@@ -30,6 +30,9 @@ export default {
   computed: {
     prev() {
       let prevPage = this.page.page - 1;
+
+      //조건문 넣기
+
       return {
         name: "blogList",
         query: { page: prevPage },
