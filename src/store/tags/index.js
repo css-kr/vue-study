@@ -13,7 +13,6 @@ const actions = {
     const { data } = await axios.get(
       `${process.env.VUE_APP_URL}/wp-json/wp/v2/tags`
     );
-    console.log("-----", data);
     commit("UPDATE_TAGS", data);
   },
 }; //함수

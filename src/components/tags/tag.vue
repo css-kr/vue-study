@@ -42,9 +42,7 @@ export default {
       return items; //.join(",");
     },
   },
-  mounted() {
-    console.log("3333", this.getTag);
-  },
+  mounted() {},
   methods: {},
 };
 </script>

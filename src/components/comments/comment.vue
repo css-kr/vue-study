@@ -7,6 +7,9 @@
       :key="item.id"
       style="border: 1px solid green; margin: 10px; padding: 10px"
     >
+      <div>
+        <button type="button" @click="reply(item.id)">{{ item.id }}</button>
+      </div>
       <div>{{ item.author_name }}</div>
       <div v-html="item.content.rendered"></div>
 
@@ -39,6 +42,14 @@ export default {
     comments: {
       type: Array,
       default: () => [],
+    },
+  },
+  methods: {
+    reply(id) {
+      console.log("replay=>", id);
+      this.$emit("clickReply", {
+        commentId: id,
+      });
     },
   },
 };

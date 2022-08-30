@@ -29,8 +29,9 @@ export default {
   computed: {
     prev() {
       let prevPage = this.page.page - 1;
-      if (prevPage >= this.page.total_page) {
-        prevPage = this.page.total_page;
+      console.log("prevPage:", prevPage);
+      if (prevPage < 1) {
+        prevPage = 1;
       }
       return { name: "blogList", query: { page: prevPage } };
     },
