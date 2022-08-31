@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import commentItem from "./comment";
 
 export default {
@@ -52,11 +53,15 @@ export default {
   },
 
   methods: {
+    ...mapActions({
+      setCommentParent: "comments/setParent",
+    }),
     reply(id) {
+      this.setCommentParent(id);
       // console.log("==========click", id);
-      this.$emit("clickReply", {
-        commentId: id,
-      });
+      // this.$emit("clickReply", {
+      //   commentId: id,
+      // });
     },
     clickReply({ commentId }) {
       this.$emit("clickReply", {

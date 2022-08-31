@@ -7,7 +7,7 @@ const getters = {
   getTags(state) {
     return state.items;
   },
-}; //
+}; // 스테이트 뽑아다씀
 const actions = {
   async getTags({ commit }) {
     const { data } = await axios.get(
@@ -22,7 +22,7 @@ const mutations = {
     console.log("!!!!!!", state.items, payload);
     state.items = payload;
   },
-}; //
+}; // 스테이트 변경값 감지해주
 
 export default {
   namespaced: true,
