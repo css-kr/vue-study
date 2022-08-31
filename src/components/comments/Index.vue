@@ -3,7 +3,7 @@
     <comment-item
       :id="id"
       :comments="comments"
-      @clickReply="reply"
+      @clickReply="clickReply"
     ></comment-item>
 
     <form method="POST" @submit.prevent="commentSubmit">
@@ -105,7 +105,7 @@ export default {
 
       console.log(data);
     },
-    reply({ commentId }) {
+    clickReply({ commentId }) {
       this.commentForm.parent = commentId;
 
       console.log("=================================!!!!!", commentId);

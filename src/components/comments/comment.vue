@@ -16,6 +16,7 @@
         :id="id"
         :parent="item.id"
         :comments="comments"
+        @clickReply="clickReply"
       ></comment-item>
     </div>
   </div>
@@ -48,6 +49,11 @@ export default {
       console.log("=====reply", id);
       this.$emit("clickReply", {
         commentId: id,
+      });
+    },
+    clickReply({ commentId }) {
+      this.$emit("clickReply", {
+        commentId: commentId,
       });
     },
   },
