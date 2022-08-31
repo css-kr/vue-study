@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const state = {
-  item: [],
+  items: [],
 }; //초기값 등록
 const getters = {
   getTags(state) {
@@ -19,8 +19,8 @@ const actions = {
 }; //함수 만듬
 const mutations = {
   UPDATE_TAGS(state, payload) {
-    console.log("!!!!!!", state.items, payload);
     state.items = payload;
+    // console.log("!!!!!!", state.items, payload);
   },
 }; // 스테이트 변경값 감지해주
 
