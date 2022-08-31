@@ -53,9 +53,14 @@ export default {
 
   methods: {
     reply(id) {
-      console.log("==========click", id);
+      // console.log("==========click", id);
       this.$emit("clickReply", {
         commentId: id,
+      });
+    },
+    clickReply({ commentId }) {
+      this.$emit("clickReply", {
+        commentId: commentId,
       });
     },
   },
