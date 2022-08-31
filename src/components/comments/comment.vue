@@ -51,6 +51,11 @@ export default {
         commentId: id,
       });
     },
+    clickReply({ commentId }) {
+      this.$emit("clickReply", {
+        commentId: commentId,
+      });
+    },
   },
 };
 </script>
