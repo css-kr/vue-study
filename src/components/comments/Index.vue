@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 import commentItem from "./comment";
 import axios from "axios";
 
@@ -58,10 +59,18 @@ export default {
       default: 0,
     },
   },
+  computed: {
+    ...mapGetters({
+      commentParent: "comments/getParent",
+    }),
+  },
   mounted() {
     this.getComment();
   },
   methods: {
+    ...mapActions({
+      setCommentParent: "comments/setParent",
+    }),
     async getComment() {
       const { data } = await axios(
         "https://theme.sunflower.kr/wp-json/wp/v2/comments",
