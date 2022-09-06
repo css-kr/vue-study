@@ -3,7 +3,7 @@
     <div
       v-for="item in comments"
       :key="item.id"
-      style="border: 1px solid chartreuse"
+      style="border: 1px solid chartreuse; padding: 10px"
     >
       <div v-html="item.content.rendered"></div>
     </div>

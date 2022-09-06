@@ -12,3 +12,16 @@
 <style lang="scss">
 @import "@/assets/scss/styles.scss";
 </style>
+
+<script>
+import { mapActions } from "vuex";
+
+export default {
+  mounted() {
+    this.getTags();
+  },
+  methods: {
+    ...mapActions({ getTags: "tags/getTags" }),
+  },
+};
+</script>
