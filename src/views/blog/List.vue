@@ -11,7 +11,7 @@
       <tag-list :items="item.tags"></tag-list>
       <hr />
     </div>
-    <list-pagination></list-pagination>
+    <list-pagination :page="page"></list-pagination>
   </div>
 </template>
 
@@ -64,7 +64,7 @@ export default {
       );
       //통신 후 대입
       this.page.total = Number(headers[`x-wp-total`]);
-      this.pate.total_page = Number(headers[`x-wp-totalpages`]);
+      this.page.total_page = Number(headers[`x-wp-totalpages`]);
       this.posts = data;
       console.log(data);
     },

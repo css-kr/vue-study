@@ -31,12 +31,13 @@ export default {
     tags() {
       const items = [];
 
-      this.item.forEach((tag) => {
+      this.items.forEach((tag) => {
         items.push(this.getTag.find((v) => v.id === tag));
       });
       return items; //.join(",");
     },
   },
+  mounted() {},
   methods: {},
 };
 </script>
