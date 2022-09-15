@@ -9,12 +9,13 @@
               id: item.id,
             },
           }"
-          >{{ item.title.rendered }}</router-link
         >
+          {{ item.title.rendered ? item.title.rendered : item.title }}
+        </router-link>
       </h2>
 
       <!-- // TODO : XSS -->
-      <div v-html="item.content.rendered"></div>
+      <div v-if="item.content" v-html="item.content.rendered"></div>
 
       <!--      <div>-->
       <!--        {{ setTag(item.tags) }}-->
@@ -24,6 +25,8 @@
 
       <hr />
     </div>
+
+    <post-search @onSearch="search"></post-search>
 
     <list-pagination :page="page"></list-pagination>
 
@@ -35,12 +38,14 @@
 import axios from "axios";
 import tagList from "@/components/tags/tag";
 import listPagination from "@/components/pagination/Index";
+import postSearch from "@/components/search/index";
 
 export default {
   name: "blogList",
   components: {
     tagList: tagList,
     listPagination: listPagination,
+    postSearch: postSearch,
   },
   data() {
     return {
@@ -48,7 +53,7 @@ export default {
       posts: null,
       tags: [],
       page: {
-        per_page: 3,
+        per_page: 1,
         page: 1,
         total: 0,
         total_page: 0,
@@ -57,13 +62,21 @@ export default {
   },
   mounted() {
     this.page.page = Number(this.$route.query.page) || 1;
-    this.getPost();
+
+    if (!this.$route.query.search) {
+      this.getPost();
+    }
   },
   watch: {
-    "$route.query"(value) {
+    "$route.query.page"(value) {
       this.page.page = Number(this.$route.query.page) || 1;
       console.log("$route.query", value);
       this.getPost();
+    },
+    "$route.query.search"(value) {
+      if (!value) {
+        this.getPost();
+      }
     },
   },
   methods: {
@@ -95,6 +108,14 @@ export default {
       });
 
       return tag;
+    },
+    search(data, headers) {
+      console.log("search", data, headers);
+
+      this.posts = data;
+
+      this.page.total = Number(headers["x-wp-total"]);
+      this.page.total_page = Number(headers["x-wp-totalpages"]);
     },
   },
 };
